@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Trail 1",
+    "description": "Trail description 1",
+    "length": 7.5,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 2",
+    "description": "Trail description 2",
+    "length": 8,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 3",
+    "description": "Trail description 3",
+    "length": 6,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 4",
+    "description": "Trail description 4",
+    "length": 3,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 5",
+    "description": "Trail description 5",
+    "length": 4.2,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 6",
+    "description": "Trail description 6",
+    "length": 6.3,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 7",
+    "description": "Trail description 7",
+    "length": 6.7,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 8",
+    "description": "Trail description 8",
+    "length": 6.2,
+    "image": "images/anika.png"
+  },
+  {
+    "name": "Trail 9",
+    "description": "Trail description 9",
+    "length": 6.5,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 10",
+    "description": "Trail description 10",
+    "length": 9.5,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 11",
+    "description": "Trail description 11",
+    "length": 1.3,
+    "image": "./assets/trail1.jpg"
+  },
+  {
+    "name": "Trail 12",
+    "description": "Trail description 12",
+    "length": 2.6,
+    "image": "./assets/trail1.jpg"
+  }
+]

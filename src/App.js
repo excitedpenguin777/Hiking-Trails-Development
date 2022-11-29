@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import {Button, Container, Row, Col} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1> Hiking Trails</h1>
+     <Container>
+       <Row>
+         <Col sm={4}> 
+         <input type='radio' name='filter2' id='Hello' value='Hello'/>
+         <label for="Hello">Hello</label>
+         <br></br>
+         <input type='radio' name='filter1' id='World' value='World'/>
+         <label for="World">World</label>
+         </Col>
+         <Col sm={8}> 2 of 2</Col>
+       </Row>
+     </Container>
     </div>
   );
 }
