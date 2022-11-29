@@ -1,6 +1,6 @@
 function TrailItem(props) {
 
-    const {image, name, bike_friendly, difficulty, description, length} = props.item
+    const {image, name, bike_friendly, difficulty, description, distance} = props.item
   
     return (
       <div>
@@ -8,7 +8,7 @@ function TrailItem(props) {
         <h2> {name} </h2>
         <h4> {bike_friendly ? 'Bike Friendly' : 'Not bike friendly'}  </h4>
         <h4> {difficulty} </h4>
-        <h4> {length} miles </h4>
+        <h4> {distance} miles </h4>
         <h3> {description} </h3>
         <button onClick={() => console.log(name)}> Add to Completed </button>
       </div>
