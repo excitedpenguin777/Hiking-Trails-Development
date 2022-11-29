@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/Hiking-Trails-Development/static/css/main.073c9b0a.css",
-    "main.js": "/Hiking-Trails-Development/static/js/main.ade6f6f1.js",
-    "static/media/logo.svg": "/Hiking-Trails-Development/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/Hiking-Trails-Development/static/css/main.44f8b8b5.css",
+    "main.js": "/Hiking-Trails-Development/static/js/main.5c2c28da.js",
     "index.html": "/Hiking-Trails-Development/index.html",
-    "main.073c9b0a.css.map": "/Hiking-Trails-Development/static/css/main.073c9b0a.css.map",
-    "main.ade6f6f1.js.map": "/Hiking-Trails-Development/static/js/main.ade6f6f1.js.map"
+    "main.44f8b8b5.css.map": "/Hiking-Trails-Development/static/css/main.44f8b8b5.css.map",
+    "main.5c2c28da.js.map": "/Hiking-Trails-Development/static/js/main.5c2c28da.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.ade6f6f1.js"
+    "static/css/main.44f8b8b5.css",
+    "static/js/main.5c2c28da.js"
   ]
 }
