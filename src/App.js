@@ -79,6 +79,7 @@ function App() {
               name="sort"
               id="Alphabetical"
               onChange={() => setSortType("Alphabetical")}
+              checked = {sortType === "Alphabetical"}
             />
             <label> Alphabetical Order</label>
             <br></br>
