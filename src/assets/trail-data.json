@@ -66,6 +66,7 @@
     "description": "Trail description 8",
     "distance": 6.2,
     "bike_friendly": true,
+    "difficulty": "Beginner",
     "image": "./trail1.png"
   },
   {

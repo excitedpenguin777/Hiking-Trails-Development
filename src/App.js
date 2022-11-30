@@ -82,12 +82,13 @@ function App() {
     const oldData = [...trailData];
     const newList = [];
     oldData.map((item) => {
-      if (matchesFilterType(item) && (!completed || completed[item.id])) {
+      // Check for filter and if the completed aggregator has been checked. If it has been checked, see if the item has been added to completed items list. 
+      if (matchesFilterType(item) && (!completed || completedItems[item.id])) {
         newList.push(item);
       }
     });
     sortBy(newList);
-  }, [beginner, bikeFriendly, completed, sortType]);
+  }, [beginner, bikeFriendly, completed, sortType, completedItems]);
 
   return (
     <div>
