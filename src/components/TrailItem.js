@@ -1,6 +1,6 @@
 function TrailItem(props) {
 
-    const {image, name, bike_friendly, difficulty, description, distance} = props.item
+    const {image, name, bike_friendly, difficulty, description, distance, id} = props.item
   
     return (
       <div>
@@ -10,7 +10,7 @@ function TrailItem(props) {
         <h4> {difficulty} </h4>
         <h4> {distance} miles </h4>
         <h3> {description} </h3>
-        <button onClick={() => console.log(name)}> Add to Completed </button>
+        <button onClick={() => props.toggleCompleted(id, distance)}> {props.isCompleted ? 'Remove from Completed' : 'Add to Completed'} </button>
       </div>
     );
   }

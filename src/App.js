@@ -11,17 +11,40 @@ function App() {
   const [sortType, setSortType] = useState("Alphabetical");
   const [beginner, setBeginner] = useState(false);
   const [bikeFriendly, setBikeFriendly] = useState(false);
-  const [cart, setCart] = useState([]);
+  const [completed, setCompleted] = useState(false)
+  const [completedItems, setCompletedItems] = useState(new Array(trailData.length).fill(false));
+  const [totalDistance, setTotalDistance] = useState(0);
 
   const updateFilter = (type) => {
     console.log(bikeFriendly);
     if (type === "Beginner") {
       const isSet = beginner;
       setBeginner(!isSet);
+    } else if (type === "Completed") {
+      const isSet = completed;
+      setCompleted(!isSet);
     } else {
       const isSet = bikeFriendly;
       setBikeFriendly(!isSet);
     }
+  };
+
+  const toggleCompleted = (id, distance) => {
+    const newCompletedItems = [...completedItems]
+    const isCompleted = completedItems[id]
+    // If completed before, subtract distance from total aggregated distance.
+    if (isCompleted) {
+      const newDistance = (totalDistance - distance)
+      setTotalDistance(newDistance)
+    // If not completed before, add distance
+    } else {
+      const newDistance = totalDistance + distance
+      setTotalDistance(newDistance)
+    }
+    // Add or remove from completed, based on previous value
+    newCompletedItems[id] = !isCompleted
+    setCompletedItems(newCompletedItems);
+    console.log("Distance" + distance)
   };
 
   const matchesFilterType = (item) => {
@@ -55,16 +78,16 @@ function App() {
   };
 
   useEffect(() => {
+    console.log(completed);
     const oldData = [...trailData];
     const newList = [];
-    oldData.map((item, index) => {
-      if (matchesFilterType(item)) {
+    oldData.map((item) => {
+      if (matchesFilterType(item) && (!completed || completed[item.id])) {
         newList.push(item);
-        console.log("Matches");
       }
     });
     sortBy(newList);
-  }, [beginner, bikeFriendly, sortType]);
+  }, [beginner, bikeFriendly, completed, sortType]);
 
   return (
     <div>
@@ -79,7 +102,7 @@ function App() {
               name="sort"
               id="Alphabetical"
               onChange={() => setSortType("Alphabetical")}
-              checked = {sortType === "Alphabetical"}
+              checked={sortType === "Alphabetical"}
             />
             <label> Alphabetical Order</label>
             <br></br>
@@ -113,15 +136,22 @@ function App() {
               type="checkbox"
               name="completedFilter"
               id="Completed"
-              onChange={() => console.log("Hello! Completed")}
+              onChange={() => updateFilter("Completed")}
             />
             <label> Completed</label>
+            <br></br>
+            <h5> Total distance hiked: {totalDistance.toFixed(1)} miles </h5>
           </Col>
           <Col sm={8}>
             <div className="TrailItemsContainer">
-              {trailList.map((item, index) => (
+              {trailList.map((item) => (
                 <div className="TrailItem">
-                  <TrailItem item={item} index={index} key={index} />
+                  <TrailItem
+                    item={item}
+                    key={item.id}
+                    isCompleted={completedItems[item.id]}
+                    toggleCompleted={toggleCompleted}
+                  />
                 </div>
               ))}
             </div>
