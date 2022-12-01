@@ -112,7 +112,7 @@ function App() {
       }
     });
     sort(newList);
-  }, [beginner, bikeFriendly, completed, sortType, trailsCompleted, matchesFilterType, sort]);
+  }, [completed, trailsCompleted, matchesFilterType, sort]);
 
   return (
     <div>
