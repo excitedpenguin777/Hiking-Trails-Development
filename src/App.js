@@ -1,25 +1,23 @@
-import { Button, Container, Row, Col } from "react-bootstrap";
+import {Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import trailData from "./assets/trail-data.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import TrailItem from "./components/TrailItem";
 import CompletedTrails from "./components/CompletedTrails";
+import Filters from "./components/Filters";
 
 function App() {
-
   //List of items which are filtered and sorted
   const [trailList, setTrailList] = useState(trailData);
   const [sortType, setSortType] = useState("None");
   const [beginner, setBeginner] = useState(false);
   const [bikeFriendly, setBikeFriendly] = useState(false);
-  const [completed, setCompleted] = useState(false)
-  const [completedItems, setCompletedItems] = useState(new Array(trailData.length).fill(false));
+  const [completed, setCompleted] = useState(false);
   const [trailsCompleted, setTrailsCompleted] = useState({});
   const [totalDistance, setTotalDistance] = useState(0);
 
   const updateFilter = (type) => {
-    console.log(bikeFriendly);
     if (type === "Beginner") {
       const isSet = beginner;
       setBeginner(!isSet);
@@ -33,33 +31,17 @@ function App() {
   };
 
   const toggleCompleted = (item) => {
-    const {id, distance} = item
-    // const newCompletedItems = [...completedItems]
-    // const isCompleted = completedItems[id]
-    // // If completed before, subtract distance from total aggregated distance.
-    // if (isCompleted) {
-    //   const newDistance = (totalDistance - distance)
-    //   setTotalDistance(newDistance)
-    // // If not completed before, add distance
-    // } else {
-    //   const newDistance = totalDistance + distance
-    //   setTotalDistance(newDistance)
-    // }
-    // // Add or remove from completed, based on previous value
-    // newCompletedItems[id] = !isCompleted
-    // setCompletedItems(newCompletedItems);
-
-    const newTrailsCompleted = {...trailsCompleted}
+    const { id, distance } = item;
+    const newTrailsCompleted = { ...trailsCompleted };
 
     if (id in newTrailsCompleted) {
-      delete newTrailsCompleted[id]
-      const newDistance = (totalDistance - distance)
-      setTotalDistance(newDistance)
-    }
-    else {
-      newTrailsCompleted[id] = item.name
-      const newDistance = totalDistance + distance
-      setTotalDistance(newDistance)
+      delete newTrailsCompleted[id];
+      const newDistance = totalDistance - distance;
+      setTotalDistance(newDistance);
+    } else {
+      newTrailsCompleted[id] = item.name;
+      const newDistance = totalDistance + distance;
+      setTotalDistance(newDistance);
     }
     setTrailsCompleted(newTrailsCompleted);
   };
@@ -83,37 +65,54 @@ function App() {
     }
   };
 
-  const sortBy = (list) => {
+  const sort = (list) => {
     const newList = [...list];
     if (sortType === "Alphabetical") {
       newList.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sortType === "Distance") {
       newList.sort((a, b) => a.distance - b.distance);
-    // No sort (original state, sorts by ID)
+      // No sort (original state, sorts by ID)
     } else {
-      newList.sort((a, b) => a.id - b.id)
+      newList.sort((a, b) => a.id - b.id);
     }
     setTrailList(newList);
   };
 
+  const updateSort = (type) => {
+    if (type === "None") {
+      setSortType("None")
+    } 
+    else if (type === "Distance"){
+      setSortType("Distance")
+    }
+    else {
+      setSortType("Alphabetical")
+    }
+  }
+
   const resetItems = () => {
     setBeginner(false);
     setBikeFriendly(false);
+    setCompleted(false);
     setSortType("None");
-  }
+  };
+
+  const clearTrailsCompleted = () => {
+    setTotalDistance(0);
+    setTrailsCompleted({});
+  };
 
   useEffect(() => {
-    console.log(completed);
     const oldData = [...trailData];
     const newList = [];
     oldData.map((item) => {
-      // Check for filter and if the completed aggregator has been checked. If it has been checked, see if the item has been added to completed items list. 
-      if (matchesFilterType(item) && (!completed || completedItems[item.id])) {
+      // Check for filter and if the completed aggregator has been checked. If it has been checked, see if the item has been added to completed items list.
+      if (matchesFilterType(item) && (!completed || trailsCompleted[item.id])) {
         newList.push(item);
       }
     });
-    sortBy(newList);
-  }, [beginner, bikeFriendly, completed, sortType, completedItems, trailsCompleted]);
+    sort(newList);
+  }, [beginner, bikeFriendly, completed, sortType, trailsCompleted, totalDistance]);
 
   return (
     <div>
@@ -122,64 +121,21 @@ function App() {
       <Container>
         <Row>
           <Col sm={4}>
-            <h3> Sort By</h3>
-            <input
-              type="radio"
-              name="sort"
-              id="None"
-              onChange={() => setSortType("None")}
-              checked={sortType === "None"}
+            <Filters
+              updateFilter={updateFilter}
+              updateSort={updateSort}
+              resetItems={resetItems}
+              sortType={sortType}
+              bikeFriendly={bikeFriendly}
+              beginner={beginner}
+              completed={completed}
             />
-            <label> None </label>
-            <br></br>
-            <input
-              type="radio"
-              name="sort"
-              id="Alphabetical"
-              onChange={() => setSortType("Alphabetical")}
-            />
-            <label> Alphabetical Order</label>
-            <br></br>
-            <input
-              type="radio"
-              name="sort"
-              id="Beginner"
-              onChange={() => setSortType("Distance")}
-            />
-            <label> Distance</label>
-            <br></br>
-            <h3> Filters</h3>
-            <input
-              type="checkbox"
-              name="beginnerFilter"
-              id="Beginner"
-              onChange={() => updateFilter("Beginner")}
-              checked={beginner === true}
-            />
-            <label> Beginner</label>
-            <br></br>
-            <input
-              type="checkbox"
-              name="bikeFilter"
-              id="Bike-friendly"
-              onChange={() => updateFilter("BikeFriendly")}
-              checked={bikeFriendly === true}
-            />
-            <label> Bike-friendly</label>
-            <br></br>
-            <h3> Other</h3>
-            <input
-              type="checkbox"
-              name="completedFilter"
-              id="Completed"
-              onChange={() => updateFilter("Completed")}
-            />
-            <label> Completed</label>
-            <br></br>
-            <h5> Total distance hiked: {Math.abs(totalDistance).toFixed(1)} miles </h5>
-            <button onClick={resetItems}> Reset Items </button>
-            <br></br>
-            <CompletedTrails trails={trailsCompleted} distance={totalDistance}></CompletedTrails>
+            <h3> My Trails </h3>
+            <CompletedTrails
+              trails={trailsCompleted}
+              distance={totalDistance}
+              reset={clearTrailsCompleted}
+            ></CompletedTrails>
           </Col>
           <Col sm={8}>
             <div className="TrailItemsContainer">
