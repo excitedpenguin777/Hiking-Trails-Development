@@ -4,8 +4,10 @@ import trailData from "./assets/trail-data.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import TrailItem from "./components/TrailItem";
+import CompletedTrails from "./components/CompletedTrails";
 
 function App() {
+
   //List of items which are filtered and sorted
   const [trailList, setTrailList] = useState(trailData);
   const [sortType, setSortType] = useState("None");
@@ -13,6 +15,7 @@ function App() {
   const [bikeFriendly, setBikeFriendly] = useState(false);
   const [completed, setCompleted] = useState(false)
   const [completedItems, setCompletedItems] = useState(new Array(trailData.length).fill(false));
+  const [trailsCompleted, setTrailsCompleted] = useState({});
   const [totalDistance, setTotalDistance] = useState(0);
 
   const updateFilter = (type) => {
@@ -29,22 +32,36 @@ function App() {
     }
   };
 
-  const toggleCompleted = (id, distance) => {
-    const newCompletedItems = [...completedItems]
-    const isCompleted = completedItems[id]
-    // If completed before, subtract distance from total aggregated distance.
-    if (isCompleted) {
+  const toggleCompleted = (item) => {
+    const {id, distance} = item
+    // const newCompletedItems = [...completedItems]
+    // const isCompleted = completedItems[id]
+    // // If completed before, subtract distance from total aggregated distance.
+    // if (isCompleted) {
+    //   const newDistance = (totalDistance - distance)
+    //   setTotalDistance(newDistance)
+    // // If not completed before, add distance
+    // } else {
+    //   const newDistance = totalDistance + distance
+    //   setTotalDistance(newDistance)
+    // }
+    // // Add or remove from completed, based on previous value
+    // newCompletedItems[id] = !isCompleted
+    // setCompletedItems(newCompletedItems);
+
+    const newTrailsCompleted = {...trailsCompleted}
+
+    if (id in newTrailsCompleted) {
+      delete newTrailsCompleted[id]
       const newDistance = (totalDistance - distance)
       setTotalDistance(newDistance)
-    // If not completed before, add distance
-    } else {
+    }
+    else {
+      newTrailsCompleted[id] = item.name
       const newDistance = totalDistance + distance
       setTotalDistance(newDistance)
     }
-    // Add or remove from completed, based on previous value
-    newCompletedItems[id] = !isCompleted
-    setCompletedItems(newCompletedItems);
-    console.log("Distance" + distance)
+    setTrailsCompleted(newTrailsCompleted);
   };
 
   const matchesFilterType = (item) => {
@@ -96,7 +113,7 @@ function App() {
       }
     });
     sortBy(newList);
-  }, [beginner, bikeFriendly, completed, sortType, completedItems]);
+  }, [beginner, bikeFriendly, completed, sortType, completedItems, trailsCompleted]);
 
   return (
     <div>
@@ -159,8 +176,10 @@ function App() {
             />
             <label> Completed</label>
             <br></br>
-            <h5> Total distance hiked: {totalDistance.toFixed(1)} miles </h5>
+            <h5> Total distance hiked: {Math.abs(totalDistance).toFixed(1)} miles </h5>
             <button onClick={resetItems}> Reset Items </button>
+            <br></br>
+            <CompletedTrails trails={trailsCompleted} distance={totalDistance}></CompletedTrails>
           </Col>
           <Col sm={8}>
             <div className="TrailItemsContainer">
@@ -169,7 +188,7 @@ function App() {
                   <TrailItem
                     item={item}
                     key={item.id}
-                    isCompleted={completedItems[item.id]}
+                    isCompleted={trailsCompleted[item.id]}
                     toggleCompleted={toggleCompleted}
                   />
                 </div>
