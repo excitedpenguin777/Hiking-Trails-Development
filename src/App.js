@@ -8,7 +8,7 @@ import TrailItem from "./components/TrailItem";
 function App() {
   //List of items which are filtered and sorted
   const [trailList, setTrailList] = useState(trailData);
-  const [sortType, setSortType] = useState("Alphabetical");
+  const [sortType, setSortType] = useState("None");
   const [beginner, setBeginner] = useState(false);
   const [bikeFriendly, setBikeFriendly] = useState(false);
   const [completed, setCompleted] = useState(false)
@@ -70,12 +70,20 @@ function App() {
     const newList = [...list];
     if (sortType === "Alphabetical") {
       newList.sort((a, b) => a.name.localeCompare(b.name));
-      // sorting by distance
-    } else {
+    } else if (sortType === "Distance") {
       newList.sort((a, b) => a.distance - b.distance);
+    // No sort (original state, sorts by ID)
+    } else {
+      newList.sort((a, b) => a.id - b.id)
     }
     setTrailList(newList);
   };
+
+  const resetItems = () => {
+    setBeginner(false);
+    setBikeFriendly(false);
+    setSortType("None");
+  }
 
   useEffect(() => {
     console.log(completed);
@@ -101,9 +109,17 @@ function App() {
             <input
               type="radio"
               name="sort"
+              id="None"
+              onChange={() => setSortType("None")}
+              checked={sortType === "None"}
+            />
+            <label> None </label>
+            <br></br>
+            <input
+              type="radio"
+              name="sort"
               id="Alphabetical"
               onChange={() => setSortType("Alphabetical")}
-              checked={sortType === "Alphabetical"}
             />
             <label> Alphabetical Order</label>
             <br></br>
@@ -121,6 +137,7 @@ function App() {
               name="beginnerFilter"
               id="Beginner"
               onChange={() => updateFilter("Beginner")}
+              checked={beginner === true}
             />
             <label> Beginner</label>
             <br></br>
@@ -129,6 +146,7 @@ function App() {
               name="bikeFilter"
               id="Bike-friendly"
               onChange={() => updateFilter("BikeFriendly")}
+              checked={bikeFriendly === true}
             />
             <label> Bike-friendly</label>
             <br></br>
@@ -142,6 +160,7 @@ function App() {
             <label> Completed</label>
             <br></br>
             <h5> Total distance hiked: {totalDistance.toFixed(1)} miles </h5>
+            <button onClick={resetItems}> Reset Items </button>
           </Col>
           <Col sm={8}>
             <div className="TrailItemsContainer">
