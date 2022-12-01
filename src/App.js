@@ -1,5 +1,5 @@
 import {Container, Row, Col } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback} from "react";
 import trailData from "./assets/trail-data.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -17,7 +17,7 @@ function App() {
   const [trailsCompleted, setTrailsCompleted] = useState({});
   const [totalDistance, setTotalDistance] = useState(0);
 
-  const updateFilter = (type) => {
+  const updateFilter = useCallback((type) => {
     if (type === "Beginner") {
       const isSet = beginner;
       setBeginner(!isSet);
@@ -28,9 +28,9 @@ function App() {
       const isSet = bikeFriendly;
       setBikeFriendly(!isSet);
     }
-  };
+  }, [beginner, completed, bikeFriendly]);
 
-  const toggleCompleted = (item) => {
+  const toggleCompleted = useCallback((item) => {
     const { id, distance } = item;
     const newTrailsCompleted = { ...trailsCompleted };
 
@@ -44,9 +44,9 @@ function App() {
       setTotalDistance(newDistance);
     }
     setTrailsCompleted(newTrailsCompleted);
-  };
+  }, [trailsCompleted, totalDistance]);
 
-  const matchesFilterType = (item) => {
+  const matchesFilterType = useCallback((item) => {
     // all items should be shown when no filter is selected
     if (!beginner && !bikeFriendly) {
       return true;
@@ -63,9 +63,9 @@ function App() {
     } else {
       return false;
     }
-  };
+  }, [beginner, bikeFriendly]);
 
-  const sort = (list) => {
+  const sort = useCallback((list) => {
     const newList = [...list];
     if (sortType === "Alphabetical") {
       newList.sort((a, b) => a.name.localeCompare(b.name));
@@ -76,9 +76,9 @@ function App() {
       newList.sort((a, b) => a.id - b.id);
     }
     setTrailList(newList);
-  };
+  }, [sortType]);
 
-  const updateSort = (type) => {
+  const updateSort = useCallback((type) => {
     if (type === "None") {
       setSortType("None")
     } 
@@ -88,31 +88,31 @@ function App() {
     else {
       setSortType("Alphabetical")
     }
-  }
+  }, []);
 
-  const resetItems = () => {
+  const resetItems = useCallback(() => {
     setBeginner(false);
     setBikeFriendly(false);
     setCompleted(false);
     setSortType("None");
-  };
+  }, []);
 
-  const clearTrailsCompleted = () => {
+  const clearTrailsCompleted = useCallback(() => {
     setTotalDistance(0);
     setTrailsCompleted({});
-  };
+  }, []);
 
   useEffect(() => {
     const oldData = [...trailData];
     const newList = [];
-    oldData.map((item) => {
+    oldData.forEach((item) => {
       // Check for filter and if the completed aggregator has been checked. If it has been checked, see if the item has been added to completed items list.
       if (matchesFilterType(item) && (!completed || trailsCompleted[item.id])) {
         newList.push(item);
       }
     });
     sort(newList);
-  }, [beginner, bikeFriendly, completed, sortType, trailsCompleted, totalDistance]);
+  }, [beginner, bikeFriendly, completed, sortType, trailsCompleted, matchesFilterType, sort]);
 
   return (
     <div>
