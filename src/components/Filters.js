@@ -73,7 +73,7 @@ function Filters(props) {
       <br></br>
       <br></br>
       <button className={"button"} onClick={resetItems}>
-        Reset Items
+        Reset Trails
       </button>
       <br></br>
     </div>

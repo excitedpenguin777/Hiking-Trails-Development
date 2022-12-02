@@ -1,7 +1,8 @@
 # Development
 
 ### Link to Deployed Website
-If you used the stencil code, this is `https://<your GitHub username>.github.io/<name of your repository>`
+
+https://excitedpenguin777.github.io/Hiking-Trails-Development
 
 ### Goal and Value of the Application
 
