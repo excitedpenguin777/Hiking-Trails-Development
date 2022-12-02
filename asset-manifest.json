@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Hiking-Trails-Development/static/css/main.62534830.css",
-    "main.js": "/Hiking-Trails-Development/static/js/main.c7cf0132.js",
+    "main.css": "/Hiking-Trails-Development/static/css/main.c5dbaae2.css",
+    "main.js": "/Hiking-Trails-Development/static/js/main.98a7908c.js",
     "index.html": "/Hiking-Trails-Development/index.html",
-    "main.62534830.css.map": "/Hiking-Trails-Development/static/css/main.62534830.css.map",
-    "main.c7cf0132.js.map": "/Hiking-Trails-Development/static/js/main.c7cf0132.js.map"
+    "main.c5dbaae2.css.map": "/Hiking-Trails-Development/static/css/main.c5dbaae2.css.map",
+    "main.98a7908c.js.map": "/Hiking-Trails-Development/static/js/main.98a7908c.js.map"
   },
   "entrypoints": [
-    "static/css/main.62534830.css",
-    "static/js/main.c7cf0132.js"
+    "static/css/main.c5dbaae2.css",
+    "static/js/main.98a7908c.js"
   ]
 }
