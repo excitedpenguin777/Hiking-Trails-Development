@@ -11,36 +11,34 @@ function Filters(props) {
 
   return (
     <div>
-      <div className="sort">
-        <h2> Sort By</h2>
-        <input
-          type="radio"
-          name="sort"
-          id="None"
-          onChange={() => updateSort("None")}
-          checked={sortType === "None"}
-        />
-        <label> None </label>
-        <br></br>
-        <br></br>
-        <input
-          type="radio"
-          name="sort"
-          id="Alphabetical"
-          onChange={() => updateSort("Alphabetical")}
-        />
-        <label> Alphabetical Order</label>
-        <br></br>
-        <br></br>
-        <input
-          type="radio"
-          name="sort"
-          id="Beginner"
-          onChange={() => updateSort("Distance")}
-        />
-        <label> Distance</label>
-        <br></br>
-      </div>
+      <h2> Sort By</h2>
+      <input
+        type="radio"
+        name="sort"
+        id="None"
+        onChange={() => updateSort("None")}
+        checked={sortType === "None"}
+      />
+      <label> None </label>
+      <br></br>
+      <br></br>
+      <input
+        type="radio"
+        name="sort"
+        id="Alphabetical"
+        onChange={() => updateSort("Alphabetical")}
+      />
+      <label> Alphabetical Order</label>
+      <br></br>
+      <br></br>
+      <input
+        type="radio"
+        name="sort"
+        id="Beginner"
+        onChange={() => updateSort("Distance")}
+      />
+      <label> Distance</label>
+      <br></br>
       <h2> Filter By</h2>
       <input
         type="checkbox"

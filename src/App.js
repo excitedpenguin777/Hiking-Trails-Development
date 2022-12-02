@@ -35,11 +35,12 @@ function App() {
     (item) => {
       const { id, distance } = item;
       const newTrailsCompleted = { ...trailsCompleted };
-
+      // If we are toggling and the trail is already in this object, we want to remove the trail and remove the distance from total distance
       if (id in newTrailsCompleted) {
         delete newTrailsCompleted[id];
         const newDistance = totalDistance - distance;
         setTotalDistance(newDistance);
+      // Add the trail and add distance
       } else {
         newTrailsCompleted[id] = item.name;
         const newDistance = totalDistance + distance;
@@ -129,21 +130,21 @@ function App() {
       <div className="App">
         <div className="LeftContainer">
           <div className="SideBar">
-          <Filters
-            updateFilter={updateFilter}
-            updateSort={updateSort}
-            resetItems={resetItems}
-            sortType={sortType}
-            accessible={accessible}
-            dogFriendly={dogFriendly}
-            completed={completed}
-          />
-          <h2> My Completed Trails </h2>
-          <CompletedTrails
-            trails={trailsCompleted}
-            distance={totalDistance}
-            reset={clearTrailsCompleted}
-          ></CompletedTrails>
+            <Filters
+              updateFilter={updateFilter}
+              updateSort={updateSort}
+              resetItems={resetItems}
+              sortType={sortType}
+              accessible={accessible}
+              dogFriendly={dogFriendly}
+              completed={completed}
+            />
+            <h2> My Completed Trails </h2>
+            <CompletedTrails
+              trails={trailsCompleted}
+              distance={totalDistance}
+              reset={clearTrailsCompleted}
+            ></CompletedTrails>
           </div>
         </div>
         <div className="RightContainer">

@@ -37,8 +37,7 @@ h1 {
     flex-direction: column;
     margin: 15px 0px 0 0px;
     padding: 10px 10px 0;
-    border: 2px solid #aca7a7;
+    border: 2px solid #b8b4b4;
     background-color: #b5dfec;
-    border-radius: 10px;
-    box-shadow: 0 1px 1px #d2d2d2;
+    border-radius: 8px;
 }
