@@ -121,7 +121,7 @@ function App() {
       }
     });
     sort(newList);
-  }, [completed, trailsCompleted, matchesFilterType, sortType, sort]);
+  }, [completed, trailsCompleted, matchesFilterType, sort]);
 
   return (
     <div>
