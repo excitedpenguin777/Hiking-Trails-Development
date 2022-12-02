@@ -17,7 +17,7 @@
     background-color: #bcd4db;
     display: flex;
     flex-direction: column;
-    height: 450px;
+    height: 500px;
     width: 300px;
 }
 
@@ -30,4 +30,15 @@
 
 h1 {
     text-align: center;
+}
+
+.SideBar {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 0 0px;
+    padding: 10px 10px 0;
+    border: 2px solid #aca7a7;
+    background-color: #93d0e2;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px #d2d2d2;
 }

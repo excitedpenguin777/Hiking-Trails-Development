@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import trailData from "./assets/trail-data.json";
+import trailData from "./trail-data.json";
 import "./App.css";
 import TrailItem from "./components/TrailItem";
 import CompletedTrails from "./components/CompletedTrails";
@@ -9,26 +9,26 @@ function App() {
   //List of items which are filtered and sorted
   const [trailList, setTrailList] = useState(trailData);
   const [sortType, setSortType] = useState("None");
-  const [beginner, setBeginner] = useState(false);
-  const [bikeFriendly, setBikeFriendly] = useState(false);
+  const [dogFriendly, setDogFriendly] = useState(false);
+  const [accessible, setAccessible] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [trailsCompleted, setTrailsCompleted] = useState({});
   const [totalDistance, setTotalDistance] = useState(0);
 
   const updateFilter = useCallback(
     (type) => {
-      if (type === "Beginner") {
-        const isSet = beginner;
-        setBeginner(!isSet);
+      if (type === "DogFriendly") {
+        const isSet = dogFriendly;
+        setDogFriendly(!isSet);
       } else if (type === "Completed") {
         const isSet = completed;
         setCompleted(!isSet);
       } else {
-        const isSet = bikeFriendly;
-        setBikeFriendly(!isSet);
+        const isSet = accessible;
+        setAccessible(!isSet);
       }
     },
-    [beginner, completed, bikeFriendly]
+    [dogFriendly, completed, accessible]
   );
 
   const toggleCompleted = useCallback(
@@ -53,23 +53,23 @@ function App() {
   const matchesFilterType = useCallback(
     (item) => {
       // all items should be shown when no filter is selected
-      if (!beginner && !bikeFriendly) {
+      if (!dogFriendly && !accessible) {
         return true;
-      } else if (beginner && bikeFriendly) {
-        if (item.difficulty === "Beginner" && item.bike_friendly) {
+      } else if (dogFriendly && accessible) {
+        if (item.dog_friendly && item.accessible) {
           return true;
         }
-      } else if (beginner) {
-        if (item.difficulty === "Beginner") {
+      } else if (dogFriendly) {
+        if (item.dog_friendly) {
           return true;
         }
-      } else if (item.bike_friendly) {
+      } else if (item.accessible) {
         return true;
       } else {
         return false;
       }
     },
-    [beginner, bikeFriendly]
+    [dogFriendly, accessible]
   );
 
   const sort = useCallback(
@@ -99,8 +99,8 @@ function App() {
   }, []);
 
   const resetItems = useCallback(() => {
-    setBeginner(false);
-    setBikeFriendly(false);
+    setDogFriendly(false);
+    setAccessible(false);
     setCompleted(false);
     setSortType("None");
   }, []);
@@ -124,25 +124,27 @@ function App() {
 
   return (
     <div>
-      <h1> Hiking Trails</h1>
+      <h1> Rhode Island Trails</h1>
       <br></br>
       <div className="App">
         <div className="LeftContainer">
+          <div className="SideBar">
           <Filters
             updateFilter={updateFilter}
             updateSort={updateSort}
             resetItems={resetItems}
             sortType={sortType}
-            bikeFriendly={bikeFriendly}
-            beginner={beginner}
+            accessible={accessible}
+            dogFriendly={dogFriendly}
             completed={completed}
           />
-          <h3> My Trails </h3>
+          <h2> My Completed Trails </h2>
           <CompletedTrails
             trails={trailsCompleted}
             distance={totalDistance}
             reset={clearTrailsCompleted}
           ></CompletedTrails>
+          </div>
         </div>
         <div className="RightContainer">
           <div className="TrailItemsContainer">

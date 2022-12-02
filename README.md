@@ -13,3 +13,6 @@ If you used the stencil code, this is `https://<your GitHub username>.github.io/
 
 ### How the User Triggers State Changes
 
+### Sources
+
+Trail data from https://www.bochnissansouth.com/blogbest-hiking-and-walking-trails-near-providence-ri/ and All Trails (https://www.alltrails.com/)

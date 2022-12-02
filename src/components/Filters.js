@@ -4,57 +4,63 @@ function Filters(props) {
     updateFilter,
     resetItems,
     sortType,
-    beginner,
-    bikeFriendly,
+    dogFriendly,
+    accessible,
     completed,
   } = props;
 
   return (
     <div>
-      <h3> Sort By</h3>
-      <input
-        type="radio"
-        name="sort"
-        id="None"
-        onChange={() => updateSort("None")}
-        checked={sortType === "None"}
-      />
-      <label> None </label>
-      <br></br>
-      <input
-        type="radio"
-        name="sort"
-        id="Alphabetical"
-        onChange={() => updateSort("Alphabetical")}
-      />
-      <label> Alphabetical Order</label>
-      <br></br>
-      <input
-        type="radio"
-        name="sort"
-        id="Beginner"
-        onChange={() => updateSort("Distance")}
-      />
-      <label> Distance</label>
-      <br></br>
-      <h3> Filter By</h3>
-      <input
-        type="checkbox"
-        name="beginnerFilter"
-        id="Beginner"
-        onChange={() => updateFilter("Beginner")}
-        checked={beginner === true}
-      />
-      <label> Beginner</label>
-      <br></br>
+      <div className="sort">
+        <h2> Sort By</h2>
+        <input
+          type="radio"
+          name="sort"
+          id="None"
+          onChange={() => updateSort("None")}
+          checked={sortType === "None"}
+        />
+        <label> None </label>
+        <br></br>
+        <br></br>
+        <input
+          type="radio"
+          name="sort"
+          id="Alphabetical"
+          onChange={() => updateSort("Alphabetical")}
+        />
+        <label> Alphabetical Order</label>
+        <br></br>
+        <br></br>
+        <input
+          type="radio"
+          name="sort"
+          id="Beginner"
+          onChange={() => updateSort("Distance")}
+        />
+        <label> Distance</label>
+        <br></br>
+      </div>
+      <h2> Filter By</h2>
       <input
         type="checkbox"
-        name="bikeFilter"
-        id="Bike-friendly"
-        onChange={() => updateFilter("BikeFriendly")}
-        checked={bikeFriendly === true}
+        name="dogFriendlyFilter"
+        id="DogFriendly"
+        onChange={() => updateFilter("DogFriendly")}
+        checked={dogFriendly === true}
       />
-      <label> Bike-friendly</label>
+      <label> Dog Friendly</label>
+      <br></br>
+      <br></br>
+      <input
+        type="checkbox"
+        name="accessibleFilter"
+        id="accessible"
+        onChange={() => updateFilter("Accessible")}
+        checked={accessible === true}
+      />
+      <label> Accessible</label>
+      <br></br>
       <br></br>
       <input
         type="checkbox"
@@ -65,7 +71,10 @@ function Filters(props) {
       />
       <label> Completed</label>
       <br></br>
-      <button onClick={resetItems}> Reset Items </button>
+      <br></br>
+      <button className={"button"} onClick={resetItems}>
+        Reset Items
+      </button>
       <br></br>
     </div>
   );

@@ -1,0 +1,110 @@
+[
+  {
+    "id": 0,
+    "name": "Neutaconkanut Hill Park Loop",
+    "description": "One of nine hiking trails available in Neutaconkanut Hill Park, the Park Loop takes visitors through the untouched forests of Providence.",
+    "distance": 1.7,
+    "accessible": false,
+    "dog_friendly": true,
+    "image": "neuta.png"
+  },
+  {
+    "id": 1,
+    "name": "Providence River Walk",
+    "description": "Running along the Providence River, the Providence River Trail offers walkers a scenic view of downtown Providence with the beauty of urban greenspaces and access to Waterplace Park and Riverwalk.",
+    "distance": 2.4,
+    "accessible": true,
+    "dog_friendly": true,
+    "image": "riverwalk.png"
+  },
+  {
+    "id": 2,
+    "name": "Roger Williams Pond Trail",
+    "description": "Creating a perimeter around four of the lakes located within Williams Park, the Roger Williams Pond Trail is the longest of the trails.",
+    "distance": 3.8,
+    "accessible": true,
+    "dog_friendly": true,
+    "image": "roger.png"
+  },
+  {
+    "id": 3,
+    "name": "Swan Point Cemetery Loop",
+    "description": "Tracing the perimeter of the beautiful Swan Point Cemetery in downtown Providence, the Perimeter Loop offers a little piece of solitude within nature.",
+    "distance": 2.4,
+    "accessible": true,
+    "dog_friendly": false,
+    "image": "swan.png"
+  },
+  {
+    "id": 4,
+    "name": "Blackstone Park Loop",
+    "description": "The tree-lined Blackstone Park Loop offers plenty of shade and views of the Seekonk River, waterfalls, and wildlife.",
+    "distance": 1.8,
+    "accessible": false,
+    "dog_friendly": true,
+    "image": "blackstone.png"
+  },
+  {
+    "id": 5,
+    "name": "Ten Mile River Greenway",
+    "description": "Following along the Ten Mile River between East Providence and Pawtucket, the Ten Mile River Greenway is a paved asphalt trail that is popular with hikers, runners, and bikers.",
+    "distance": 6.1,
+    "accessible": true,
+    "dog_friendly": true,
+    "image": "ten.png"
+  },
+  {
+    "id": 6,
+    "name": "India Point and Bike Path",
+    "description": "Circling India Point Park, the paved concrete and stone dust walking trails of the India Point and Bike Path offer views of the Seekonk and Providence Rivers and Providence Harbor.",
+    "distance": 1.2,
+    "accessible": true,
+    "dog_friendly": true,
+    "image": "india.png"
+  },
+  {
+    "id": 7,
+    "name": "Cliff Walk",
+    "description": "This is a very popular area for birding, running, and walking, so you'll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.",
+    "distance": 7.0,
+    "accessible": true,
+    "dog_friendly": true,
+    "image": "cliff.png"
+  },
+  {
+    "id": 8,
+    "name": "Fort Adams Bay Walk",
+    "description": "Creating a perimeter around four of the lakes located within Williams Park, the Roger Williams Pond Trail is the longest of the trails.",
+    "distance": 2.2,
+    "accessible": false,
+    "dog_friendly": true,
+    "image": "adams.png"
+  },
+  {
+    "id": 9,
+    "name": "Colonial Tree Walk",
+    "description": "Visit legendary specimen trees and historic points of interest - courtesy of The Newport Arboretum.",
+    "distance": 1.4,
+    "accessible": true,
+    "dog_friendly": false,
+    "image": "colonial.png"
+  },
+  {
+    "id": 10,
+    "name": "Sachuest Beach",
+    "description": "This route follows the shoreline of Sachuest Beach, also known as Second Beach. Seasonally the beach has lifeguards on duty, as well as bathrooms and a concession stand.",
+    "distance": 2.2,
+    "accessible": false,
+    "dog_friendly": true,
+    "image": "beach.png"
+  },
+  {
+    "id": 11,
+    "name": "Castle Hill Lighthouse",
+    "description": "This trail is great for walking, and it's unlikely you'll encounter many other people while exploring. The lighthouse is managed through a partnership between the Castle Hill Inn and the US Coast Guard.",
+    "distance": 0.7,
+    "accessible": true,
+    "dog_friendly": true,
+    "image": "lighthouse.png"
+  }
+]
