@@ -17,7 +17,7 @@ function TrailItem(props) {
         height={200}
       />
       <h3> {name} </h3>
-      <h4> {distance} miles </h4>
+      <h4> Distance: {distance} miles </h4>
       <h4>
         {accessible ? "Accessible" : ""} {dog_friendly ? "Dog Friendly" : ""}{" "}
       </h4>
